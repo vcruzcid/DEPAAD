@@ -1,5 +1,6 @@
 import os
 
+VERSION = "0.1b"
 CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8" # Application (client) ID of app registration
 
 CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONLY during testing.
@@ -21,8 +22,8 @@ REDIRECT_PATH = "/getAToken"  # Used for forming an absolute URL to your redirec
 # https://developer.microsoft.com/en-us/graph/graph-explorer
 ENDPOINT = 'https://graph.microsoft.com/v1.0/users'  # This resource requires no admin consent
 
+SESSION_TYPE = "filesystem"  # Specifies the token cache should be stored in server-side session
+
 # You can find the proper permission names from this document
 # https://docs.microsoft.com/en-us/graph/permissions-reference
 SCOPE = ["User.ReadBasic.All"]
-
-SESSION_TYPE = "filesystem"  # Specifies the token cache should be stored in server-side session

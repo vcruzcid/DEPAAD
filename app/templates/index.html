@@ -9,16 +9,12 @@
     <h2>AAD Username: {{ user.get("username")}}</h2>
 
     {% if config.get("ENDPOINT") %}
-      <li><a href='/graphcall'>Call Microsoft Graph API</a></li>
-    {% endif %}
-
-    {% if config.get("B2C_PROFILE_AUTHORITY") %}
-      <li><a href='{{_build_auth_url(authority=config["B2C_PROFILE_AUTHORITY"])}}'>Edit Profile</a></li>
+      <li><a href='/graphcall'>Link only appears if user is logged in</a></li>
     {% endif %}
 
     <li><a href="/logout">Logout</a></li>
     <hr>
-    <footer style="text-align: right">Powered by MSAL Python {{ version }}</footer>
+    <footer style="text-align: right">MIPS Tools: {{ version config.get("VERSION") }}</footer>
 </body>
 </html>
 
