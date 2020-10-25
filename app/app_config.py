@@ -1,6 +1,6 @@
 import os
 
-VERSION = "0.1b"
+#AZURE App Information
 CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8" # Application (client) ID of app registration
 
 CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONLY during testing.
@@ -14,7 +14,7 @@ CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONL
 # AUTHORITY = "https://login.microsoftonline.com/common"  # For multi-tenant app
 AUTHORITY = "https://login.microsoftonline.com/935ddf29-4b2b-4c23-8b83-b4dd0645ca6b"
 
-REDIRECT_PATH = "/getAToken"  # Used for forming an absolute URL to your redirect URI.
+REDIRECT_PATH = "/getAADToken"  # Used for forming an absolute URL to your redirect URI.
                               # The absolute URL must match the redirect URI you set
                               # in the app's registration in the Azure portal.
 
@@ -26,4 +26,14 @@ SESSION_TYPE = "filesystem"  # Specifies the token cache should be stored in ser
 
 # You can find the proper permission names from this document
 # https://docs.microsoft.com/en-us/graph/permissions-reference
-SCOPE = ["User.ReadBasic.All"]
+# SCOPE = ["User.ReadBasic.All"]
+SCOPE = []
+
+# MobileIron Configuration
+API_TOKEN = "dmNydXotZW1tYWRtaW5AbW9iaWxlaXJvbi5jb206TWk0TWFuMTE="
+UEMHOST = "https://na2.mobileiron.com"
+MI_API = { "Cloud":"/api/v1", "Core": "/api/v2", "Connected Cloud": "/rest/api/v2"}
+MI_API_URL = UEMHOST + MI_API.get("Cloud")
+AUTH_HEADERS = {
+    'Authorization': f'Basic {API_TOKEN}'
+}

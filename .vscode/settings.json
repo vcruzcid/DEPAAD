@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "venv/bin/python",
+    "python.pythonPath": "/Users/victorcruz/Documents/CODE/Python/DEPAAD/venv/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }

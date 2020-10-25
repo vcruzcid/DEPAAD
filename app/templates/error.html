@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if useragent.platform == 'iPhone' %}
+        <p>iPhone Error.</p>
+    {% elif useragent.platform == 'iPad' %}
+        <p>iPad Error.</p>
+    {% else %}
+        <p>Your {{ useragent.platform }} Operating System is not supported by this app.</p>
+    {% endif %}
+{% endblock %}

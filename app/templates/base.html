@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>ACES - MobileIron device registration - {{ title }}</title>
+    {% else %}
+        <title>ACES - MobileIron device registration</title>
+    {% endif %}
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

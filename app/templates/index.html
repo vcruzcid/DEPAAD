@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-    <h1>ACES TEST</h1>
-    <h2>AAD Name: {{ user.get("name") }}</h2>
-    <h2>AAD Username: {{ user.get("username")}}</h2>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>ACES</h1>
 
     {% if config.get("ENDPOINT") %}
-      <li><a href='/graphcall'>Link only appears if user is logged in</a></li>
+      <li><a href='/complete'>Assign Device to user</a></li>
     {% endif %}
 
     <li><a href="/logout">Logout</a></li>
-    <hr>
-    <footer style="text-align: right">MIPS Tools: {{ version  }}</footer>
-</body>
-</html>
+
+  {% endblock %}
+
+
 

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>ACES</h1>
+<h3>Device Serial Number:  </h3>
+<h4>Device with serial: {{ deviceSerial }} sucessfully assigned to user {{ username }}!</h4>
+
+{% if config.get("ENDPOINT") %}
+<li><a href='/gr'>Link only appears if user is logged in to Microsoft</a></li>
+{% endif %}
+
+<li><a href="/logout">Logout</a></li>
+
+{% endblock %}
