@@ -2,7 +2,7 @@ import uuid
 import requests
 from flask import Flask, render_template, session, request, redirect, url_for, flash
 from flask_session import Session  # https://pythonhosted.org/Flask-Session
-from prodict import Prodict
+from prodict import Prodict #TODO: Remove this library before prod
 import msal
 import app_config
 
@@ -20,7 +20,7 @@ def index():
     if session.get("user"):
         return render_template('complete.html', deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username"))
     else:
-        return redirect(url_for("login"))
+        return redirect(url_for("login", deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username")))
         
 
 @app.route("/login")
@@ -50,12 +50,12 @@ def authorized():
             result["error"], result.get("error_description"))
     session["user"] = result.get("id_token_claims")
     _save_cache(cache)
-    return redirect(url_for("complete", username='vic@fullbla.com', deviceSerial='F9FRD6YVGHK9'))
+    return redirect(url_for("complete", username=session["user"]["preferred_username"], deviceSerial=session.get("deviceSerial")))
 
 
 @app.route("/complete")
 def complete():
-    username = request.args.get('username')
+    username = session["user"]["preferred_username"]
     deviceSerial = request.args.get('deviceSerial')
     device = search_device_by_serial(
         deviceSerial, get_mi_cloud_dmpartitionid()).json()
@@ -79,7 +79,7 @@ def search_device_by_serial(serial, dm_partition_id):
         "GET", full_url, headers=app_config.AUTH_HEADERS)
     return device_search
 
-
+#TODO: Add feature to support multiple cloud spaces
 def get_mi_cloud_dmpartitionid():
     api_endpoint = "/tenant/partition/device"
     full_url = app_config.MI_API_URL + api_endpoint
