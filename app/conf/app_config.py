@@ -1,6 +1,4 @@
-import os
-
-#AZURE App Information
+# AZURE App Information
 CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8" # Application (client) ID of app registration
 
 CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONLY during testing.
@@ -32,8 +30,9 @@ SCOPE = []
 # MobileIron Configuration
 API_TOKEN = "dmNydXotZW1tYWRtaW5AbW9iaWxlaXJvbi5jb206TWk0TWFuMTE="
 UEMHOST = "https://na2.mobileiron.com"
-MI_API = { "Cloud":"/api/v1", "Core": "/api/v2", "Connected Cloud": "/rest/api/v2"}
+MI_API = {"Cloud": "/api/v1", "Core": "/api/v2", "Connected Cloud": "/rest/api/v2"}
 MI_API_URL = UEMHOST + MI_API.get("Cloud")
 AUTH_HEADERS = {
     'Authorization': f'Basic {API_TOKEN}'
 }
+VERSION = "0.2b"
