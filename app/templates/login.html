@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-</head>
-
-<body>
-    <h1>MobileIron - ACES AzureAD & DEP registration flow - BETA</h1>
-
-    <li><a href='{{ auth_url }}'>Sign In</a></li>
-
-    <hr>
-    <footer style="text-align: right">MobileIron {{ version }}</footer>
-</body>
-
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sd">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h1>MobileIron - ACES</h1>
+                                <h3>Azure AD & DEP registration flow</h2>
+                                <p class="text-danger text-right">BETA</h3>
+                            <p class="text-muted text-center" >Sign In to your Microsoft account</p>
+                            <div class="row justify-content-center">
+                                <div class="d-flex ">
+                                    <a href='{{ auth_url }}' class="btn btn-primary px-4 center">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

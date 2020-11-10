@@ -2,7 +2,6 @@ import uuid
 import requests
 from flask import Flask, render_template, session, request, redirect, url_for, flash
 from flask_session import Session  # https://pythonhosted.org/Flask-Session
-from prodict import Prodict #TODO: Remove this library before prod
 import msal
 import app_config
 
@@ -71,7 +70,7 @@ def logout():
         "https://login.microsoftonline.com/common/oauth2/v2.0/logout"
         "?post_logout_redirect_uri=" + url_for("index", _external=True))
 
-
+#TODO: Add validation if the serial is not found on MI Cloud
 def search_device_by_serial(serial, dm_partition_id):
     api_endpoint = f"/device?q={serial}&rows=50&start=0&fq=&dmPartitionId={dm_partition_id}"
     full_url = app_config.MI_API_URL + api_endpoint
@@ -83,17 +82,17 @@ def search_device_by_serial(serial, dm_partition_id):
 def get_mi_cloud_dmpartitionid():
     api_endpoint = "/tenant/partition/device"
     full_url = app_config.MI_API_URL + api_endpoint
-    cloud_partition = Prodict.from_dict(requests.request(
-        "GET", full_url, headers=app_config.AUTH_HEADERS).json())
-    return cloud_partition.result.searchResults[0]["id"]
+    cloud_partition = requests.request(
+        "GET", full_url, headers=app_config.AUTH_HEADERS).json()
+    return cloud_partition["result"]["searchResults"][0]["id"]
 
 
 def get_mi_cloud_user(username):
     api_endpoint = f"/account?q={username}"
     full_url = app_config.MI_API_URL + api_endpoint
-    cloud_user = Prodict.from_dict(requests.request(
-        "GET", full_url, headers=app_config.AUTH_HEADERS).json())
-    return cloud_user.result.searchResults
+    cloud_user = requests.request(
+        "GET", full_url, headers=app_config.AUTH_HEADERS).json()
+    return cloud_user["result"]["searchResults"]
 
 
 def assign_device(userid,deviceid):
@@ -156,6 +155,17 @@ def _get_ios_device():
     if request.user_agent.platform == "iPhone" or request.user_agent.platform == "iPad" or request.user_agent.platform == "macos":
         return True
 
+#TODO: Move error handling
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
 
 #app.jinja_env.globals.update(_build_auth_url=_build_auth_url)  # Used in template
 

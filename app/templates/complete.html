@@ -1,14 +1,27 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>ACES</h1>
-<h3>Device Serial Number:  </h3>
-<h4>Device with serial: {{ deviceSerial }} sucessfully assigned to user {{ username }}!</h4>
-
-{% if config.get("ENDPOINT") %}
-<li><a href='/gr'>Link only appears if user is logged in to Microsoft</a></li>
-{% endif %}
-
-<li><a href="/logout">Logout</a></li>
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sd">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h1>MobileIron - ACES</h1>
+                            <h3>Azure AD & DEP registration flow</h2>
+                                <p class="text-danger text-right">BETA
+                            </h3>
+                            <div class="row justify-content-center">
+                                <div class="alert alert-success" role="alert">
+                                    Device with serial: {{ deviceSerial }} sucessfully assigned to user {{ username }}!
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <a class="btn btn-secondary px-4" href="/logout">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
