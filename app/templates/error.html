@@ -12,17 +12,18 @@
                             <p class="text-danger text-right">BETA
                         </h3>
                         <div class="row justify-content-center">
-                            <div class="alert alert-error" role="alert">
+                            <div class="alert alert-warning" role="alert">
                                 {% if error is defined %}
-                                <p>Error: {{ error }}</p>
+                                Error: {{ error }}
                                 {% endif %}
+                                <hr>
                                 {% if useragent is defined %}
                                 {% if useragent.platform == 'iPhone' %}
-                                <p>iPhone Error.</p>
+                                iPhone Error.
                                 {% elif useragent.platform == 'iPad' %}
-                                <p>iPad Error.</p>
+                                iPad Error.
                                 {% else %}
-                                <p>Your {{ useragent.platform }} Operating System is not supported by this app.</p>
+                                Your {{ useragent.platform }} Operating System is not supported by this app.
                                 {% endif %}
                                 {% endif %}
                             </div>
