@@ -1,11 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if useragent.platform == 'iPhone' %}
-        <p>iPhone Error.</p>
-    {% elif useragent.platform == 'iPad' %}
-        <p>iPad Error.</p>
-    {% else %}
-        <p>Your {{ useragent.platform }} Operating System is not supported by this app.</p>
-    {% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sd">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h1>MobileIron - ACES</h1>
+                        <h3>Azure AD & DEP registration flow</h2>
+                            <p class="text-danger text-right">BETA
+                        </h3>
+                        <div class="row justify-content-center">
+                            <div class="alert alert-error" role="alert">
+                                {% if error is defined %}
+                                <p>Error: {{ error }}</p>
+                                {% endif %}
+                                {% if useragent is defined %}
+                                {% if useragent.platform == 'iPhone' %}
+                                <p>iPhone Error.</p>
+                                {% elif useragent.platform == 'iPad' %}
+                                <p>iPad Error.</p>
+                                {% else %}
+                                <p>Your {{ useragent.platform }} Operating System is not supported by this app.</p>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
 {% endblock %}

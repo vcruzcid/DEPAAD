@@ -15,13 +15,18 @@ Session(app)
 
 @app.route("/")
 def index():
-    session["deviceSerial"] = request.args["deviceSerial"]
-    if ps_common._get_ios_device is False:
-        return render_template('error.html', useragent=request.user_agent)
-    if session.get("user"):
-        return render_template('complete.html', deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username"))
-    else:
-        return redirect(url_for("login", deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username")))
+    try:
+        session["deviceSerial"] = request.args["deviceSerial"]
+        if ps_common._get_ios_device is False:
+            return render_template('error.html', useragent=request.user_agent)
+        if session.get("user"):
+            return render_template('complete.html', deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username"))
+        else:
+            return redirect(url_for("login", deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username")))
+    except:
+        app.logger.error('Device serial number not provided')
+        return render_template(
+            'error.html', error="no serial number provided", useragent=request.user_agent)
 
 
 @app.route("/login")
@@ -31,7 +36,7 @@ def login():
     # here we choose to also collect end user consent upfront
     auth_url = ms_auth._build_auth_url(
         scopes=app_config.SCOPE, state=session["state"])
-    return render_template("login.html", auth_url=auth_url, version=app_config.VERSION)
+    return render_template("login.html", auth_url=auth_url)
 
 
 # Its absolute URL must match the app's redirect_uri set in AAD.
@@ -75,13 +80,17 @@ def logout():
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('templates/404.html'), 404
+    return render_template('404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    return render_template('templates/500.html'), 500
+    return render_template('500.html'), 500
 
+
+@app.context_processor
+def psversion():
+    return dict(psver=app_config.VERSION)
 
 # remove comment: app.jinja_env.globals.update(_build_auth_url=_build_auth_url)  # Used in template
 
