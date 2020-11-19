@@ -61,13 +61,21 @@ def authorized():
 @app.route("/complete")
 def complete():
     username = session["user"]["preferred_username"]
-    deviceSerial = request.args.get('deviceSerial')
-    device = mi_cloud.search_device_by_serial(
-        deviceSerial, mi_cloud.get_mi_cloud_dmpartitionid()).json()
-    deviceid = device["result"]["searchResults"][0]['id']
-    cloud_user = mi_cloud.get_mi_cloud_user(username)
-    mi_cloud.assign_device(cloud_user[0]['id'], deviceid)
-    return render_template("complete.html", deviceSerial=deviceSerial, username=username)
+    device_serial = ps_common._get_device_serial_from_args
+    try:
+        device = mi_cloud.search_device_by_serial(
+            device_serial, mi_cloud.get_mi_cloud_dmpartitionid()).json()
+        device_id = device["result"]["searchResults"][0]['id']
+        if device_id:
+            cloud_user = mi_cloud.get_mi_cloud_user(username)
+            mi_cloud.assign_device(cloud_user[0]['id'], device_id)
+            return render_template(
+                "complete.html", deviceSerial=device_serial, username=username)
+    except:
+        app.logger.error('Device serial number not found on MI Cloud')
+        return render_template(
+            'error.html', error="serial Number:  serial number not found on MI Cloud",
+            useragent=request.user_agent, device_serial=device_serial)
 
 
 @app.route("/logout")
