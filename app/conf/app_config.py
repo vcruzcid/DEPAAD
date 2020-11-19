@@ -1,7 +1,7 @@
 # AZURE App Information
-CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8" # Application (client) ID of app registration
+CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8"  # Application (client) ID of app registration
 
-CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONLY during testing.
+CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa"  # Placeholder - for use ONLY during testing.
 # In a production app, we recommend you use a more secure method of storing your secret,
 # like Azure Key Vault. Or, use an environment variable as described in Flask's documentation:
 # https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
@@ -13,8 +13,8 @@ CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa" # Placeholder - for use ONL
 AUTHORITY = "https://login.microsoftonline.com/935ddf29-4b2b-4c23-8b83-b4dd0645ca6b"
 
 REDIRECT_PATH = "/getAADToken"  # Used for forming an absolute URL to your redirect URI.
-                              # The absolute URL must match the redirect URI you set
-                              # in the app's registration in the Azure portal.
+# The absolute URL must match the redirect URI you set
+# in the app's registration in the Azure portal.
 
 # You can find more Microsoft Graph API endpoints from Graph Explorer
 # https://developer.microsoft.com/en-us/graph/graph-explorer
