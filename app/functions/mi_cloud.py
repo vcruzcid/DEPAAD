@@ -1,5 +1,5 @@
 import requests
-from conf import app_config
+from app.conf import app_config
 import app
 
 

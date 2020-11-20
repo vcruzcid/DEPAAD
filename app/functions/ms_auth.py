@@ -1,7 +1,7 @@
 import msal
 import uuid
 from flask import session, url_for
-from conf import app_config
+from app.conf import app_config
 
 
 def _load_cache():
