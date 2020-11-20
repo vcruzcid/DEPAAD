@@ -37,5 +37,5 @@ MI_API_URL = UEMHOST + MI_API.get("Cloud")
 AUTH_HEADERS = {
     'Authorization': f'Basic {API_TOKEN}'
 }
-# Software Version 
+# Software Version
 VERSION = "0.1.1"
