@@ -38,4 +38,4 @@ AUTH_HEADERS = {
     'Authorization': f'Basic {API_TOKEN}'
 }
 # Software Version
-VERSION = "0.1.1"
+VERSION = "0.2.0"
