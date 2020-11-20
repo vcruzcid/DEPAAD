@@ -1,13 +1,12 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 # AZURE App Information
 CLIENT_ID = "98145980-4a60-455a-9699-eacf4d339ee8"  # Application (client) ID of app registration
-
-CLIENT_SECRET = "yDVk163PQZm_hs_oU0~3hZHn~g-.FZ9Jxa"  # Placeholder - for use ONLY during testing.
-# In a production app, we recommend you use a more secure method of storing your secret,
-# like Azure Key Vault. Or, use an environment variable as described in Flask's documentation:
-# https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
-# CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-# if not CLIENT_SECRET:
-#     raise ValueError("Need to define CLIENT_SECRET environment variable")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+if not CLIENT_SECRET:
+    raise ValueError("Need to define CLIENT_SECRET environment variable")
 
 # AUTHORITY = "https://login.microsoftonline.com/common"  # For multi-tenant app
 AUTHORITY = "https://login.microsoftonline.com/935ddf29-4b2b-4c23-8b83-b4dd0645ca6b"
@@ -28,11 +27,15 @@ SESSION_TYPE = "filesystem"  # Specifies the token cache should be stored in ser
 SCOPE = []
 
 # MobileIron Configuration
-API_TOKEN = "dmNydXotZW1tYWRtaW5AbW9iaWxlaXJvbi5jb206TWk0TWFuMTE="
+API_TOKEN = os.getenv("API_TOKEN")
+if not API_TOKEN:
+    raise ValueError("Need to define API_TOKEN environment variable")
+
 UEMHOST = "https://na2.mobileiron.com"
 MI_API = {"Cloud": "/api/v1", "Core": "/api/v2", "Connected Cloud": "/rest/api/v2"}
 MI_API_URL = UEMHOST + MI_API.get("Cloud")
 AUTH_HEADERS = {
     'Authorization': f'Basic {API_TOKEN}'
 }
+# Software Version
 VERSION = "0.1.1"
