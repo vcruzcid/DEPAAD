@@ -3,8 +3,8 @@ import logging
 import uuid
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
-from conf import app_config
-from functions import ms_auth, ps_common, mi_cloud
+from app.conf import app_config
+from app.functions import ms_auth, ps_common, mi_cloud
 from logging.handlers import RotatingFileHandler
 
 
