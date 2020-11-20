@@ -23,7 +23,7 @@ def index():
             return render_template('complete.html', deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username"))
         else:
             return redirect(url_for("login", deviceSerial=session.get("deviceSerial"), username=session.get("preferred_username")))
-    except:
+    except SystemExit:
         app.logger.error('Device serial number not provided')
         return render_template(
             'error.html', error="no serial number provided", useragent=request.user_agent)
@@ -71,7 +71,7 @@ def complete():
             mi_cloud.assign_device(cloud_user[0]['id'], device_id)
             return render_template(
                 "complete.html", deviceSerial=device_serial, username=username)
-    except:
+    except SystemExit:
         app.logger.error('Device serial number not found on MI Cloud')
         return render_template(
             'error.html', error="serial Number:  serial number not found on MI Cloud",

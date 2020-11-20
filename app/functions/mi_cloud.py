@@ -13,7 +13,7 @@ def assign_device(userid, deviceid):
         putdevice = requests.put(full_url, data=data, headers=headers)
         app.logger.info('Assigned Deviceid: {deviceid} to user: {userid}')
         return putdevice
-    except:
+    except SystemExit:
         app.logger.error(
             'Error while assigning Deviceid: {deviceid} to user: {userid}')
 
@@ -25,7 +25,7 @@ def search_device_by_serial(serial, dm_partition_id):
         device_search = requests.request(
             "GET", full_url, headers=app_config.AUTH_HEADERS)
         return device_search
-    except:
+    except SystemExit:
         app.logger.error('Error while getting info in MI Cloud for device serial: {serial}')
 
 # TODO: Add feature to support multiple cloud spaces
@@ -38,7 +38,7 @@ def get_mi_cloud_dmpartitionid():
         cloud_partition = requests.request(
             "GET", full_url, headers=app_config.AUTH_HEADERS).json()
         return cloud_partition["result"]["searchResults"][0]["id"]
-    except:
+    except SystemExit:
         app.logger.error('Error while getting MI Cloud partitionID')
 
 
@@ -49,5 +49,5 @@ def get_mi_cloud_user(username):
         cloud_user = requests.request(
             "GET", full_url, headers=app_config.AUTH_HEADERS).json()
         return cloud_user["result"]["searchResults"]
-    except:
+    except SystemExit:
         app.logger.error('Error while getting MI Cloud info for: {username}')
