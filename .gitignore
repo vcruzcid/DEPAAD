@@ -139,3 +139,40 @@ cython_debug/
 
 # VSCode Stuff
 .vscode
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Flask session files (project specific)
+flask_session/
+
+# Application logs
+logs/
+*.log
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Application specific
+instance/
+.webassets-cache
